@@ -13,20 +13,30 @@ describe "anagrams" do
     words.length == 99171
   end
 
-  it "has the right number of combinations for a word" do
-    word_combos = mix_word(@word)
-    word_combos.length.should eq(5)
-  end
-
   it "finds all combinations of ordered letters for word" do
     word_combos = mix_word(@word)
     @mixes.each { |m| word_combos.include?(m).should eq(true) }
   end
 
-  it "removes from the list anything not found in the dictionary" do
+  it "returns 0 if no anagrams found in the dictionary" do
     word = "be"
-    anagrams_for(word).should_not be(nil)
-    
+    anagrams = anagrams_for(word)
+    puts "anagrams are #{anagrams}"
+    anagrams.length.should be(0)    
   end
+
+  it "returns 2 anagrams ('rots' and 'tors') for 'sort'" do
+    word = 'sort'
+    anagrams = anagrams_for(word)
+    anagrams.include?('rots').should be(true)
+    anagrams.include?('tors').should be(true)
+  end
+
+  it "returns 'pinkish' when 'kinship' is the word" do
+    word = 'kinship'
+    anagrams = anagrams_for(word)
+    anagrams.include?('pinkish').should be(true)
+  end
+
 
 end

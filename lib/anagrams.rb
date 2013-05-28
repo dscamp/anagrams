@@ -8,7 +8,8 @@ def anagrams_for(word)
   words = retrieve_dictionary
   perms = mix_word(word)
   anagrams = []
-  perms.each { |perm| anagrams << perm if words.include?(perm) }
+  perms.each { |perm| anagrams << perm if words.include?(perm + "\n") }
+  anagrams
 end
 
 def mix_word(word)
@@ -32,9 +33,16 @@ end
 
 if __FILE__ == $0
   puts "mixing words"
-  word = "abc"
-  words = mix_word(word)
+  word = "sort"
+  dict = retrieve_dictionary
 
-  puts "the words are"
-  words.each { |w| puts w }
+  puts "dict is: #{dict.class}"
+  puts "100th dict word is #{dict[99]}"
+  puts "dict word is: #{dict[0].class}"
+  if dict.include?(word + "\n")
+    puts "word is real"
+  else
+    puts "word not real"
+  end
+
 end
