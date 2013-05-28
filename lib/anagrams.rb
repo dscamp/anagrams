@@ -4,6 +4,12 @@
 
 require 'pathname'
 
+def anagrams_for(word)
+  words = retrieve_dictionary
+  perms = mix_word(word)
+  anagrams = []
+  perms.each { |perm| anagrams << perm if words.include?(perm) }
+end
 
 def mix_word(word)
   mixes = []
@@ -13,9 +19,9 @@ def mix_word(word)
   mixes
 end
 
-def get_dictionary
+def retrieve_dictionary
   pn = Pathname.new("/usr/share/dict/words")
-  words = pn.readlines
+  pn.readlines
 end
 
 

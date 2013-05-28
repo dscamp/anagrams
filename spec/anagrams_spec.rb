@@ -9,7 +9,7 @@ describe "anagrams" do
   end
 
   it "has a dictionary" do
-    words = get_dictionary
+    words = retrieve_dictionary
     words.length == 99171
   end
 
@@ -20,8 +20,13 @@ describe "anagrams" do
 
   it "finds all combinations of ordered letters for word" do
     word_combos = mix_word(@word)
-    puts "word combos: #{word_combos}"
     @mixes.each { |m| word_combos.include?(m).should eq(true) }
+  end
+
+  it "removes from the list anything not found in the dictionary" do
+    word = "be"
+    anagrams_for(word).should_not be(nil)
+    
   end
 
 end
