@@ -32,17 +32,7 @@ end
 
 
 if __FILE__ == $0
-  puts "mixing words"
-  word = "sort"
-  dict = retrieve_dictionary
-
-  puts "dict is: #{dict.class}"
-  puts "100th dict word is #{dict[99]}"
-  puts "dict word is: #{dict[0].class}"
-  if dict.include?(word + "\n")
-    puts "word is real"
-  else
-    puts "word not real"
-  end
-
+  puts "Anagrams -- mixing words"
+  word = ARGV[0].to_s
+  puts anagrams_for(word)
 end
